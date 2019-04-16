@@ -40,9 +40,22 @@ public class BarFrame extends JFrame implements ChangeListener {
 					public void mousePressed(MouseEvent e) {
 						int mousePressedX = e.getX();
 						int mousePressedY = e.getY();
-						System.out.println("X: "+ mousePressedX);
-						System.out.println("Y: "+ mousePressedY);
-						//dataModel.update(y, x);
+						//System.out.println("X: "+ mousePressedX);
+						//System.out.println("Y: "+ mousePressedY);
+						
+						double max = (a.get(0)).doubleValue();
+						for (Double v : a) {
+							double val = v.doubleValue();
+							if (val > max)
+								max = val;
+						}
+						double x = ((double)mousePressedX / getIconWidth())*max;
+						
+						double barHeight = (getIconHeight())/ a.size();
+						int y = (int)((mousePressedY / barHeight-1*0.5));
+						
+						dataModel.update(y, x);
+						System.out.println("Meine exe: "+x);
 					}
 				});
 				
