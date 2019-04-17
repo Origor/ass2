@@ -1,4 +1,4 @@
-package unx;
+package Oop_a2.gitK.ass2.unx;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -18,7 +18,7 @@ public class BarFrame extends JFrame implements ChangeListener {
 	 * Constructs a BarFrame object
 	 * @param dataModel the data that is displayed in the barchart
 	 */
-	public BarFrame(DataModel dataModel) {
+	public BarFrame(DataModel dataModel, TextFrame textFrame) {
 		this.dataModel = dataModel;
 		a = dataModel.getData();
 
@@ -34,36 +34,33 @@ public class BarFrame extends JFrame implements ChangeListener {
 				return ICON_HEIGHT;
 			}
 
+			double barHeight = (getIconHeight())/ a.size();
+
 			public void paintIcon(Component c, Graphics g, int x, int y) {
 				addMouseListener(new MouseAdapter() {
 					@Override
 					public void mousePressed(MouseEvent e) {
-						int mousePressedX = e.getX();
-						int mousePressedY = e.getY();
-						System.out.println("X: "+ mousePressedX);
-						System.out.println("Y: "+ mousePressedY);
-						//dataModel.update(y, x);
+						int location = (int) (e.getY()/barHeight -1 * 0.5);
+						double value = e.getX();
+						//System.out.println("getY(): " + e.getY() + "  getX(): " + e.getX() + " barHeight: " + (int) ((e.getY()/barHeight) - 1));
+						 if (e.getY() < ICON_HEIGHT + barHeight/2) {
+							dataModel.update(location, value);
+							//textFrame.getDataModel().update(location, value);
+							textFrame.getJTextFieldArr()[location].setText(String.valueOf(value)); //= new JTextField(value + "", 11);
+						 }
+						//	System.out.println("aa: " + a);
 					}
 				});
-				
+				//System.out.println("a: " + a);
 				Graphics2D g2 = (Graphics2D) g;
 
 				g2.setColor(Color.darkGray);
 
-				double max = (a.get(0)).doubleValue();
-				for (Double v : a) {
-					double val = v.doubleValue();
-					if (val > max)
-						max = val;
-				}
-
-				double barHeight = (getIconHeight())/ a.size();
-
 				int i = 0;
 				for (Double v : a) {
-					double value = v.doubleValue();
-
-					double barLength = getIconWidth() * value / max;
+					double value = v;
+					//	System.out.println("v = " +  v);
+					double barLength = getIconWidth() * value / ICON_WIDTH;
 
 					Rectangle2D.Double rectangle = new Rectangle2D.Double(0, (barHeight * i), barLength, barHeight-1);
 					i++;
@@ -77,13 +74,13 @@ public class BarFrame extends JFrame implements ChangeListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
 		setVisible(true);
-		
-		
+
+
 	}
 
 	/**
 	 * Called when the data in the model is changed.
-	 * 
+	 *
 	 * @param e the event representing the change
 	 */
 	public void stateChanged(ChangeEvent e) {
