@@ -1,4 +1,4 @@
-package unx;
+package Oop_a2.gitK.ass2.unx;
 
 import java.util.ArrayList;
 import javax.swing.event.*;
@@ -7,6 +7,9 @@ import javax.swing.event.*;
   A Subject class for the observer pattern.
 */
 public class DataModel {
+   private ArrayList<Double> data;
+   private ArrayList<ChangeListener> listeners;
+
    /**
       Constructs a DataModel object
       @param d the data to model
@@ -44,6 +47,5 @@ public class DataModel {
       }
    }
 
-   ArrayList<Double> data;
-   ArrayList<ChangeListener> listeners;
+
 }

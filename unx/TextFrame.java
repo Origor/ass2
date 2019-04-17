@@ -1,4 +1,4 @@
-package unx;
+package Oop_a2.gitK.ass2.unx;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -6,14 +6,20 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 /**
-  A class for displaying the model as a column of textfields in a frame.
-*/
+ A class for displaying the model as a column of textfields in a frame.
+ */
 public class TextFrame extends JFrame {
+   private DataModel dataModel;
+   private JTextField[] fieldList;
+
+   JTextField[] getJTextFieldArr(){ return fieldList;}
+   DataModel getDataModel(){ return dataModel;}
+
    /**
-      Constructs a JFrame that contains the textfields containing the data
-      in the model.
-      @param d the model to display
-   */
+    Constructs a JFrame that contains the textfields containing the data
+    in the model.
+    @param d the model to display
+    */
    public TextFrame(DataModel d) {
       dataModel = d;
 
@@ -23,6 +29,7 @@ public class TextFrame extends JFrame {
       ArrayList<Double> a = dataModel.getData();
       fieldList = new JTextField[a.size()];
 
+
       // A listener for action events in the text fields
       ActionListener l = new ActionListener() {
          public void actionPerformed(ActionEvent e) {
@@ -30,8 +37,9 @@ public class TextFrame extends JFrame {
             JTextField c = (JTextField) e.getSource();
             int i = 0;
             int count = fieldList.length;
-            while (i < count && fieldList[i] != c)
+            while (i < count && fieldList[i] != c) {
                i++;
+            }
 
             String text = c.getText().trim();
 
@@ -46,6 +54,7 @@ public class TextFrame extends JFrame {
       };
 
       final int FIELD_WIDTH = 11;
+
       for (int i = 0; i < a.size(); i++) {
          JTextField textField = new JTextField(a.get(i).toString(),FIELD_WIDTH);
          textField.addActionListener(l);
@@ -58,6 +67,4 @@ public class TextFrame extends JFrame {
       setVisible(true);
    }
 
-   DataModel dataModel;
-   JTextField[] fieldList;
 }
