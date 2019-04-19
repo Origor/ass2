@@ -40,7 +40,6 @@ public class BarFrame extends JFrame implements ChangeListener {
 				addMouseListener(new MouseAdapter() {
 					@Override
 					public void mousePressed(MouseEvent e) {
-<<<<<<< HEAD
 						int mousePressedX = e.getX();
 						int mousePressedY = e.getY();
 						//System.out.println("X: "+ mousePressedX);
@@ -59,7 +58,6 @@ public class BarFrame extends JFrame implements ChangeListener {
 						
 						dataModel.update(y, x);
 						System.out.println("Meine exe: "+x);
-=======
 						int location = (int) (e.getY()/barHeight -1 * 0.5);
 						double value = e.getX();
 						//System.out.println("getY(): " + e.getY() + "  getX(): " + e.getX() + " barHeight: " + (int) ((e.getY()/barHeight) - 1));
@@ -69,7 +67,6 @@ public class BarFrame extends JFrame implements ChangeListener {
 							textFrame.getJTextFieldArr()[location].setText(String.valueOf(value)); //= new JTextField(value + "", 11);
 						 }
 						//	System.out.println("aa: " + a);
->>>>>>> master
 					}
 				});
 				//System.out.println("a: " + a);

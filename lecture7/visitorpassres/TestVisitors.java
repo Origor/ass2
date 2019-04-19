@@ -1,6 +1,7 @@
 package Oop_a2.gitK.ass2.lecture7.visitorpassres;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class TestVisitors {
@@ -29,7 +30,6 @@ public class TestVisitors {
 		TreeVisitor<String,Integer> thv = new TreeHeightVisitor<>();
 		TreeVisitor<String,List<String>> llv = new ListLeavesVisitor<>();
 		TreeVisitor<String,Integer> lcv = new LeavesCountVisitor<>();
-
 		TreeVisitor<String, String> ppv = new PrettyPrintVisitor<>();
 
 		System.out.println("Tree: " + t);
@@ -40,7 +40,7 @@ public class TestVisitors {
 
 		System.out.println("Leaves count: "+t.accept(lcv, 0));
 
-		System.out.println(System.lineSeparator() + t.accept(ppv, "Root"));
+		System.out.println(System.lineSeparator() + t.accept(ppv, ""));
 
 	}
 }

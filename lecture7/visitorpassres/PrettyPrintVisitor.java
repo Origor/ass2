@@ -1,6 +1,7 @@
 package Oop_a2.gitK.ass2.lecture7.visitorpassres;
 
 public class PrettyPrintVisitor<T> implements TreeVisitor<T, String> {
+       String result;
 
 
     @Override
@@ -16,11 +17,13 @@ public class PrettyPrintVisitor<T> implements TreeVisitor<T, String> {
 
     @Override
     public String visit(Node<T> n, String initialResult) {
-        //final String temp = initialResult;
-        String result = "Child" + System.lineSeparator();
+        String result;
+        if(!(n.accept(new TreeHeightVisitor<>(), 0) == 1)) result = "Root" + System.lineSeparator();
+        else result = "Child" + System.lineSeparator();
+
         for (Tree<T> child : n.getChildren()){
             result += "\t"+child.accept(this, result);
         }
-        return "Root"  + System.lineSeparator() + "\t" + result;
+        return  result;
     }
 }
