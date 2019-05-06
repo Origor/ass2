@@ -1,6 +1,6 @@
-package Oop_a2.gitK.ass2re2.lecture7.visitorpassres;
+package Oop_a2.gitK.ass2re1.lecture7.visitorpassres;
 
-import java.util.*;
+import java.util.List;
 
 public class ListLeavesVisitor<T> implements TreeVisitor<T, List<T>> {
 

@@ -1,6 +1,6 @@
-package Oop_a2.gitK.ass2re2.lecture7.visitorpassres;
+package Oop_a2.gitK.ass2.ass2re2.ass2re1.lecture7.visitorbase;
 
-import java.util.*;
+import java.util.List;
 
 public class Node<T> implements Tree<T> {
 
@@ -10,15 +10,16 @@ public class Node<T> implements Tree<T> {
 		children = trees;
 	}
 
-	public <R> R accept(TreeVisitor<T, R> v, R initialResult) {
-		return v.visit(this, initialResult);
-	}
-
 	public String toString() {
 		return getClass().getName() + "[children = " + children + "]";
 	}
 
+	public <R> R accept(TreeVisitor<T, R> v) {
+		return v.visit(this);
+	}
+	
 	public List<Tree<T>> getChildren() {
 		return children;
 	}
+
 }

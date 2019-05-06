@@ -1,7 +1,6 @@
-package Oop_a2.gitK.ass2re2.assignment2;
+package Oop_a2.gitK.ass2.ass2re2.ass2re1.assignment2;
 
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
+import javax.swing.*;
 
 public class SignalWindow extends JFrame implements SignalObserver {
 	private JTextArea jta;

@@ -1,4 +1,4 @@
-package Oop_a2.gitK.ass2re2.assignment2;
+package Oop_a2.gitK.ass2.ass2re2.ass2re1.assignment2;
 
 public class StarObserver implements SignalObserver {
 

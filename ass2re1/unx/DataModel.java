@@ -1,4 +1,4 @@
-package Oop_a2.gitK.ass2re2.unx;
+package Oop_a2.gitK.ass2re1.unx;
 
 import java.util.ArrayList;
 import javax.swing.event.*;
@@ -16,7 +16,7 @@ public class DataModel {
     */
    public DataModel(ArrayList<Double> d) {
       data = d;
-      listeners = new ArrayList<>();
+      listeners = new ArrayList<ChangeListener>();
    }
 
    /**
@@ -41,7 +41,7 @@ public class DataModel {
     @param value the new value
     */
    public void update(int location, double value) {
-      data.set(location, value);
+      data.set(location, new Double(value));
       for (ChangeListener l : listeners) {
          l.stateChanged(new ChangeEvent(this));
       }

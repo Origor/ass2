@@ -1,21 +1,18 @@
-package Oop_a2.gitK.ass2re2.unx;
+package Oop_a2.gitK.ass2re1.unx;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.util.ArrayList;
-import java.util.function.Consumer;
-import java.util.stream.IntStream;
 
 /**
  A class for displaying the model as a column of textfields in a frame.
  */
-public class TextFrame extends JFrame implements ChangeListener {
+public class TextFrame extends JFrame {
    private DataModel dataModel;
    private JTextField[] fieldList;
 
+   JTextField[] getJTextFieldArr(){ return fieldList;}
    DataModel getDataModel(){ return dataModel;}
 
    /**
@@ -30,7 +27,6 @@ public class TextFrame extends JFrame implements ChangeListener {
       setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 
       ArrayList<Double> a = dataModel.getData();
-
       fieldList = new JTextField[a.size()];
 
 
@@ -71,10 +67,4 @@ public class TextFrame extends JFrame implements ChangeListener {
       setVisible(true);
    }
 
-   @Override
-   public void stateChanged(ChangeEvent changeEvent) {
-      IntStream.range(0, fieldList.length).forEach(
-              i -> fieldList[i].setText(dataModel.getData().get(i).toString())
-      );
-   }
 }

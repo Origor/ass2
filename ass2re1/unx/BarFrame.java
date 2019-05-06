@@ -1,30 +1,24 @@
-package Oop_a2.gitK.ass2re2.unx;
+package Oop_a2.gitK.ass2re1.unx;
 
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.geom.*;
-import javax.swing.*;
-import javax.swing.event.*;
-import java.util.*;
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 
 /**
  * A class that implements an Observer object that displays a barchart view of a
  * data model.
  */
 public class BarFrame extends JFrame implements ChangeListener {
-
-	private ArrayList<Double> a;
-	private DataModel dataModel;
-
-	private static final int ICON_WIDTH = 200;
-	private static final int ICON_HEIGHT = 200;
-
 	/**
 	 * Constructs a BarFrame object
 	 * @param dataModel the data that is displayed in the barchart
 	 */
-	public BarFrame(DataModel dataModel) {
+	public BarFrame(DataModel dataModel, TextFrame textFrame) {
 		this.dataModel = dataModel;
 		a = dataModel.getData();
 
@@ -46,14 +40,36 @@ public class BarFrame extends JFrame implements ChangeListener {
 				addMouseListener(new MouseAdapter() {
 					@Override
 					public void mousePressed(MouseEvent e) {
+						int mousePressedX = e.getX();
+						int mousePressedY = e.getY();
+						//System.out.println("X: "+ mousePressedX);
+						//System.out.println("Y: "+ mousePressedY);
+						
+						double max = (a.get(0)).doubleValue();
+						for (Double v : a) {
+							double val = v.doubleValue();
+							if (val > max)
+								max = val;
+						}
+						double x = ((double)mousePressedX / getIconWidth())*max;
+						
+						double barHeight = (getIconHeight())/ a.size();
+						int y = (int)((mousePressedY / barHeight-1*0.5));
+						
+						dataModel.update(y, x);
+						System.out.println("Meine exe: "+x);
 						int location = (int) (e.getY()/barHeight -1 * 0.5);
 						double value = e.getX();
 						//System.out.println("getY(): " + e.getY() + "  getX(): " + e.getX() + " barHeight: " + (int) ((e.getY()/barHeight) - 1));
-						if (e.getY() < ICON_HEIGHT + barHeight/2) {
+						 if (e.getY() < ICON_HEIGHT + barHeight/2) {
 							dataModel.update(location, value);
-						}
+							//textFrame.getDataModel().update(location, value);
+							textFrame.getJTextFieldArr()[location].setText(String.valueOf(value)); //= new JTextField(value + "", 11);
+						 }
+						//	System.out.println("aa: " + a);
 					}
 				});
+				//System.out.println("a: " + a);
 				Graphics2D g2 = (Graphics2D) g;
 
 				g2.setColor(Color.darkGray);
@@ -63,6 +79,7 @@ public class BarFrame extends JFrame implements ChangeListener {
 					double value = v;
 					//	System.out.println("v = " +  v);
 					double barLength = getIconWidth() * value / ICON_WIDTH;
+
 					Rectangle2D.Double rectangle = new Rectangle2D.Double(0, (barHeight * i), barLength, barHeight-1);
 					i++;
 					g2.fill(rectangle);
@@ -86,10 +103,12 @@ public class BarFrame extends JFrame implements ChangeListener {
 	 */
 	public void stateChanged(ChangeEvent e) {
 		a = dataModel.getData();
-		DataModel b = (DataModel) e.getSource();
-
-		System.out.println("stateChanged()");
 		repaint();
 	}
 
+	private ArrayList<Double> a;
+	private DataModel dataModel;
+
+	private static final int ICON_WIDTH = 200;
+	private static final int ICON_HEIGHT = 200;
 }

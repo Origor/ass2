@@ -1,10 +1,8 @@
-package Oop_a2.gitK.ass2re2.assignment2;
+package Oop_a2.gitK.ass2.ass2re2.ass2re1.assignment2;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
 
 public class TestSignal1 {
 	static JFrame frame = new JFrame();

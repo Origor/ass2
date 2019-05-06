@@ -1,21 +1,23 @@
-package Oop_a2.gitK.ass2re2.lecture7.visitorpassres;
+package Oop_a2.gitK.ass2re1.lecture7.visitorpassres;
 
-public class LeavesCountVisitor<T> implements TreeVisitor<T, Integer> {
+public class TreeHeightVisitor<T> implements TreeVisitor<T, Integer> {
 
 	public Integer visit(Tree<T> t, Integer initialResult) {
 		return t.accept(this, initialResult);
 	}
 
 	public Integer visit(Leaf<T> l, Integer initialResult) {
-		return initialResult + 1;
+		return 0;
 	}
 
 	public Integer visit(Node<T> n, Integer initialResult) {
-		Integer result = initialResult;
+		Integer result = 0;
+		Integer max = result;
 		for (Tree<T> child : n.getChildren()) {
-			result = child.accept(this, result);
+			result = child.accept(this, 0);
+			if (result > max)
+				max = result;
 		}
-		return result;
+		return max + 1;
 	}
-
 }

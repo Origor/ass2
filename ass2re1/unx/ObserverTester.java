@@ -1,4 +1,4 @@
-package Oop_a2.gitK.ass2re2.unx;
+package Oop_a2.gitK.ass2re1.unx;
 
 import java.util.ArrayList;
 
@@ -11,20 +11,19 @@ public class ObserverTester {
     @param args unused
     */
    public static void main(String[] args) {
-
       ArrayList<Double> data = new ArrayList<Double>();
-      data.add(100.0);
-      data.add(100.0);
-      data.add(100.0);
-      data.add(100.0);
+
+      data.add(33.0);
+      data.add(44.0);
+      data.add(22.0);
+      data.add(22.0);
 
       DataModel model = new DataModel(data);
 
       TextFrame frame = new TextFrame(model);
 
-      BarFrame barFrame = new BarFrame(model);
+      BarFrame barFrame = new BarFrame(model, frame);
 
       model.attach(barFrame);
-      model.attach(frame);
    }
 }

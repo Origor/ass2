@@ -1,4 +1,4 @@
-package Oop_a2.gitK.ass2re2.lecture7.visitorpassres;
+package Oop_a2.gitK.ass2.ass2re2.ass2re1.lecture7.visitorbase;
 
 public class Leaf<T> implements Tree<T> {
 
@@ -8,14 +8,14 @@ public class Leaf<T> implements Tree<T> {
 		value = v;
 	}
 
-	public <R> R accept(TreeVisitor<T, R> v, R initialResult) {
-		return v.visit(this, initialResult);
-	}
-
 	public String toString() {
 		return getClass().getName() + "[value = " + value + "]";
 	}
 
+	public <R> R accept(TreeVisitor<T, R> v) {
+		return v.visit(this);
+	}
+	
 	public T getValue() {
 		return value;
 	}
