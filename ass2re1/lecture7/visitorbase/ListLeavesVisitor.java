@@ -1,4 +1,4 @@
-package Oop_a2.gitK.ass2.ass2re2.ass2re1.lecture7.visitorbase;
+package Oop_a2.ass2.ass2re1.lecture7.visitorbase;
 
 import java.util.ArrayList;
 import java.util.List;

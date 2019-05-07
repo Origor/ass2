@@ -1,4 +1,4 @@
-package Oop_a2.gitK.ass2re2.lecture7.visitorpassres;
+package Oop_a2.ass2.ass2re2.lecture7.visitorpassres;
 
 public class TreeHeightVisitor<T> implements TreeVisitor<T, Integer> {
 
